@@ -21,7 +21,7 @@ for i in range(0, len(data)):
 
 # Identifique a quantidade total de compras realizadas.
 print(df)
-print(f"Quantidade total de compras realizadas: {len(data)}")
+print(f"quantidade total de compras realizadas: {len(data)}")
 
 # analise de compra
 produto_mais_caro = max(data, key=lambda x: x["Valor"])
