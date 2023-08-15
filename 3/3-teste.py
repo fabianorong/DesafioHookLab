@@ -11,3 +11,5 @@ tabela_agrupada = (
     .reset_index()
 )
 print(tabela_agrupada)
+
+print(f"Quantidade total de compras realizadas: {len(tabela_agrupada)}")
