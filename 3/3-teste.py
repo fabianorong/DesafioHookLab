@@ -5,6 +5,7 @@ with open("3\dados_compras.json") as f:
     data = json.load(f)
 
 tabela = pd.DataFrame(data)
+
 tabela_agrupada = (
     tabela.groupby("Login")
     .agg(
@@ -55,3 +56,26 @@ print("Produto mais caro:")
 print(df2)
 print("Produto mais barato:")
 print(df3)
+
+# Segmentação por Gênero
+tabela_agrupada_genero = (
+    tabela.groupby("Sexo")
+    .agg(
+        {
+            "Valor": "sum",
+        }
+    )
+    .reset_index()
+)
+print("Valor total gasto em compras por gênero:")
+print(tabela_agrupada_genero)
+
+# Calcular a frequência de cada sexo na coluna de Sexo
+freq_sexo = tabela_agrupada["Sexo"].value_counts()
+# Calcular a porcentagem de cada sexo na coluna de Sexo
+perc_sexo = freq_sexo.apply(lambda x: x / len(df) * 100)
+# Converter a série em um dataframe e mostrar as colunas de Sexo e Porcentagem
+dist_sexo = perc_sexo.to_frame().reset_index()
+dist_sexo.columns = ["Sexo", "Porcentagem"]
+print("distribuição de gênero entre os consumidores:")
+print(dist_sexo)
