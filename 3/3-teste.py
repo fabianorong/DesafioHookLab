@@ -81,9 +81,12 @@ dist_sexo.columns = ["Sexo", "Porcentagem"]
 print("distribuição de gênero entre os consumidores:")
 print(dist_sexo)
 
-# Gerar um gráfico de pizza a partir da coluna de Porcentagem
+# Gerar um gráfico de pizza Distribuição de Gênero entre os Consumidores
 dist_sexo.plot(kind="pie", y="Porcentagem", labels=dist_sexo["Sexo"], autopct="%1.1f%%")
-
 plt.title("Distribuição de Gênero entre os Consumidores")
-# Mostrar o gráfico
+plt.show()
+
+# Gráfico de barras Valor total gasto em compras por gênero
+tabela_agrupada_genero.plot(kind="bar", x="Sexo", y="Valor")
+plt.title("Valor total gasto em compras por gênero")
 plt.show()
