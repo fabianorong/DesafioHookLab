@@ -1,5 +1,6 @@
 import json
 import pandas as pd
+import matplotlib.pyplot as plt
 
 with open("3\dados_compras.json") as f:
     data = json.load(f)
@@ -73,9 +74,16 @@ print(tabela_agrupada_genero)
 # Calcular a frequência de cada sexo na coluna de Sexo
 freq_sexo = tabela_agrupada["Sexo"].value_counts()
 # Calcular a porcentagem de cada sexo na coluna de Sexo
-perc_sexo = freq_sexo.apply(lambda x: x / len(df) * 100)
+perc_sexo = freq_sexo.apply(lambda x: x / len(tabela_agrupada) * 100)
 # Converter a série em um dataframe e mostrar as colunas de Sexo e Porcentagem
 dist_sexo = perc_sexo.to_frame().reset_index()
 dist_sexo.columns = ["Sexo", "Porcentagem"]
 print("distribuição de gênero entre os consumidores:")
 print(dist_sexo)
+
+# Gerar um gráfico de pizza a partir da coluna de Porcentagem
+dist_sexo.plot(kind="pie", y="Porcentagem", labels=dist_sexo["Sexo"], autopct="%1.1f%%")
+
+plt.title("Distribuição de Gênero entre os Consumidores")
+# Mostrar o gráfico
+plt.show()
