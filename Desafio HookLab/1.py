@@ -1,12 +1,30 @@
-from bs4 import BeautifulSoup
 import requests
-import csv
+from bs4 import BeautifulSoup
 
-source = requests.get("https://www.reddit.com/r/programming/")
+# Solicitação GET para o URL do subreddit r/programming
+response = requests.get("https://www.reddit.com/r/programming/.json")
 
-soup = BeautifulSoup(source.text, "html.parser")
+# Verificar se a solicitação foi bem-sucedida
+if response.status_code == 200:
+    # Obter os dados JSON da resposta
+    data = response.json()
 
-posts = soup.find_all("div", class_="_1oQyIsiPHYt6nx7VOmd1sz", limit=3)
+    # Obter a lista de postagens do campo "data" do JSON
+    posts = data["data"]["children"]
 
+    # Iterar sobre as três primeiras postagens
+    for i in range(3):
+        # Título, up votes e o link
+        title = posts[i]["data"]["title"]
+        upvotes = posts[i]["data"]["ups"]
+        link = posts[i]["data"]["url"]
 
-print(len(posts))
+        # Informações da postagem
+        print(f"Postagem {i+1}:")
+        print(f"Título: {title}")
+        print(f"Up votes: {upvotes}")
+        print(f"Link: {link}")
+        print()
+else:
+    # Mensagem de erro se a solicitação falhar
+    print(f"Erro: {response.status_code}")
