@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 
-with open("3\dados_compras.json") as f:
+with open("Desafio HookLab\Exercicio 3\dados_compras.json") as f:
     data = json.load(f)
 
 tabela = pd.DataFrame(data)
