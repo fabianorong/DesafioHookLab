@@ -90,3 +90,14 @@ plt.show()
 tabela_agrupada_genero.plot(kind="bar", x="Sexo", y="Valor")
 plt.title("Valor total gasto em compras por gênero")
 plt.show()
+
+# Grafico de barras para quantidades compradas por item ID
+tabela_agrupado_item = tabela.groupby("Item ID").count()
+
+tabela_agrupado_item.plot(kind="bar", y="Login")
+plt.title("Quantidade de cada Item comprado")
+plt.xlabel("Item ID")
+plt.ylabel("Quantidade")
+plt.legend().remove()
+plt.tight_layout()
+plt.show()
